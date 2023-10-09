@@ -21,6 +21,9 @@ $(document).ready(() => {
     
             sq.css("left", `${sqX}px`)
             sq.css("top", `${sqY}px`)
+
+            let color = sq.css("background-color");
+            console.log(color);
         })
 
         $(document).on("touchmove", (event) => {
