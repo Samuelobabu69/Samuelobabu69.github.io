@@ -9,6 +9,24 @@ $(document).ready(() => {
         let startX = Number(sq.css("left").replace("px", ""));
         let startY = Number(sq.css("top").replace("px", ""));
 
+        setInterval(() => {
+            let color = sq.css("background-color");
+
+            if (color === "rgb(255, 0, 0)") {
+                sq.css("background-color", "orange")
+            } else if (color === "rgb(255, 165, 0)") {
+                sq.css("background-color", "yellow")
+            } else if (color === "rgb(255, 255, 0)") {
+                sq.css("background-color", "green")
+            } else if (color === "rgb(0, 128, 0)") {
+                sq.css("background-color", "blue")
+            } else if (color === "rgb(0, 0, 255)") {
+                sq.css("background-color", "purple")
+            } else if (color === "rgb(128, 0, 128)") {
+                sq.css("background-color", "red")
+            }
+        }, 50);
+
         $(document).mousemove((event) => {
             let mouseX = event.clientX;
             let mouseY = event.clientY;
