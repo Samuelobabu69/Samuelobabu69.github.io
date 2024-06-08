@@ -1,0 +1,157 @@
+<!--Created by Samuel Rieger-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows 11</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="assets/icons/windows-start.png">
+</head>
+<body>
+    <div class="phone">
+        Phones are not supported. Use PC or laptop instead.
+    </div>
+    <div class="desktop">
+        <div class="window credentials-screen" style="display: none;">
+            <div class="window-taskbar credentials-screen-taskbar">
+                <div class="cmd-tab">
+                    <img class="cmd-icon" src="assets/icons/cmd.png">
+                    <p class="cmd-label">Príkazový riadok</p>   
+                </div>
+                <div class="window-taskbar-action window-action-close">
+                    <img class="close-icon" src="assets/icons/close.png">
+                </div>
+                <div class="window-taskbar-action window-action-maximize">
+                    <img class="maximize-icon" src="assets/icons/maximize.png">
+                </div>
+                <div class="window-taskbar-action window-action-minimalize">
+                    <img class="minimalize-icon" src="assets/icons/minimalize.png">
+                </div>
+            </div>
+            <div class="credentials-screen-text">
+                <p class="cmd-font"><strike>Microsoft</strike> SR Windows [Version 1.0.0]</p>
+                <p class="cmd-font"><strike>Microsoft</strike> SR Corporation. Všetky práva <strike>ne</strike>vyhradené.</p>
+                <br>
+                <p class="cmd-font">Údaje je možné zmeniť neskôr v nastaveniach.</p>
+                <br>
+                <p class="cmd-font username-input-text" style="display: none;">C:/Username></p>
+                <input class="cmd-font cmd-input username-input" id="username-input" type="text" style="display: none;">
+                <p class="cmd-font pin-input-text" style="display: none;">C:/PIN (6-číselný)></p>
+                <input class="cmd-font cmd-input pin-input" type="text" style="display: none;">
+            </div>
+        </div>
+        <div class="setting-up-screen">
+            <div class="setting-up-circles">
+                <div class="setting-up-circle-1"></div>
+                <div class="setting-up-circle-2"></div>
+                <div class="setting-up-circle-3"></div>
+            </div>
+            <div class="setting-up-phrases">
+                <p class="setting-up-phrase-1" style="opacity: 0;">Making sure everything is ready to go.</p>
+                <p class="setting-up-phrase-2" style="opacity: 0;">Don't turn off your PC</p>
+            </div>
+            <audio class="startup-sound" src="assets/sounds/startup-sound.mp3"></audio>
+        </div>
+        <div class="lock-screen">
+            <img class="lock-screen-wallpaper" src="assets/wallpapers/lock-screen-wallpaper.png">
+            <div class="lock-screen-time-date">
+                <p class="lock-screen-time">14:14</p>
+                <p class="lock-screen-date">utorok 11. septembra</p>
+            </div>
+            <div class="log-in-screen">
+                <div class="log-in-elements" style="opacity: 0;">
+                    <img class="log-in-pfp-image" src="assets/others/lock-screen-pfp.png">
+                    <p class="log-in-username">Jožko M</p>
+                    <div class="log-in-pin-border">
+                        <input class="log-in-pin" type="password" placeholder="PIN">
+                    </div>
+                    <p class="forgot-pin">Nepamätám si PIN kód</p>
+                    <p class="error-no-pin">Zadajte PIN kód.</p>
+                    <p class="error-incorrect-pin">PIN kód je nesprávny. Skúste to znova.</p>
+                    <button class="error-button-ok">OK</button>
+                    <p class="welcome">Vitajte</p>
+                </div>
+            </div>
+        </div>
+        <div class="desktop">
+            <img class="desktop-wallpaper" src="assets/wallpapers/desktop-wallpaper.jpg"> <!--https://www.google.com/url?sa=i&url=https%3A%2F%2Fblogs.windows.com%2Fwindowsexperience%2F2021%2F10%2F06%2Fwindows-11-blossoms-with-bloom-a-new-symbol-for-a-new-operating-system%2F&psig=AOvVaw2a9A_Cp8RW4KxixZU_C0wy&ust=1694193779042000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCKiCu-WBmYEDFQAAAAAdAAAAABAE-->
+            <div class="desktop-icons">
+                <div class="desktop-icon">
+                    <img class="desktop-icon-image" src="assets/icons/recycle-bin.png"> <!--https://www.google.com/url?sa=i&url=https%3A%2F%2Fwinaero.com%2Fhow-to-open-recycle-bin-in-windows-11%2F&psig=AOvVaw0kXxCFN4p0TU5e70ctU6vP&ust=1694193933568000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCODTmq-CmYEDFQAAAAAdAAAAABAE-->
+                    <p>Kôš</p>
+                </div>
+            </div>
+            <div class="taskbar">
+                <div class="start-menu-contextmenu">
+                    <div class="start-menu-contextmenu-element">
+                        Factory Reset
+                    </div>
+                </div>
+                <div class="taskbar-icons">
+                    <div class="start-button taskbar-icon">
+                        <img class="start-button-image taskbar-icon-image" src="assets/icons/windows-start.png"> <!--https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.techspot.com%2Fdownloads%2F7437-windows-11-installation-tool.html&psig=AOvVaw2KSXi7d1TDcmpz1eyQtF2H&ust=1694194053947000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCNjzy_iCmYEDFQAAAAAdAAAAABAQ-->
+                    </div>
+                    <div class="taskbar-icon">
+                        <img class="taskbar-icon-image" src="assets/icons/task-view.png"> <!--https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.wikipedia.org%2Fwiki%2FFile%3AWindows_11_Task_View_Icon.png&psig=AOvVaw1Cd7stG2frBK3adn5aHWj2&ust=1694202927146000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCPCnpO-jmYEDFQAAAAAdAAAAABAE-->
+                    </div>
+                    <div class="taskbar-icon">
+                        <img class="taskbar-icon-image" src="assets/icons/file_explorer.png"> <!--https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.elevenforum.com%2Ft%2Frestore-classic-file-explorer-with-ribbon-in-windows-11.620%2F&psig=AOvVaw1zgChnOoubpw9X_PQGAJBo&ust=1694202743836000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCIDcjpijmYEDFQAAAAAdAAAAABAE-->
+                    </div>
+                    <div class="taskbar-icon">
+                        <img class="taskbar-icon-image" src="assets/icons/google-chrome.png"> <!--https://www.google.com/url?sa=i&url=https%3A%2F%2Fcommons.wikimedia.org%2Fwiki%2FFile%3AGoogle_Chrome_icon_%2528February_2022%2529.svg&psig=AOvVaw0ckfWvRXT8ApL53mapJLwW&ust=1694202568230000&source=images&cd=vfe&opi=89978449&ved=0CBAQjRxqFwoTCICynsSimYEDFQAAAAAdAAAAABAE-->
+                    </div>
+                </div>
+                <div class="taskbar-time-date">
+                    <p class="taskbar-time">14:14</p>
+                    <p class="taskbar-date">11. 9. 2001</p>
+                </div>
+            </div>
+            <div class="start-menu">
+                <div class="start-menu-body">
+                    <div class="start-menu-search-bar">
+                        <img class="start-menu-search-bar-icon" src="assets/icons/search.png">
+                        <input class="start-menu-search-bar-input" placeholder="Hľadať aplikácie, nastavenia a dokumenty">
+                    </div>
+                    <div class="start-menu-pinned-apps-header">
+                        <p class="start-menu-pinned-apps-label">Pripnuté</p>
+                        <div class="start-menu-pinned-apps-show-all">
+                            <p class="start-menu-pinned-apps-show-all-label">Všetky aplikácie </p>
+                        </div>
+                    </div>
+                    <div class="start-menu-pinned-apps-container">
+                        <div class="start-menu-app">
+                            <img class="start-menu-app-icon" src="assets/icons/notepad.png">
+                            <p class="start-menu-app-name">Poznámkový blok</p>
+                        </div>
+                        <div class="start-menu-app">
+                            <img class="start-menu-app-icon" src="assets/icons/google-chrome.png">
+                            <p class="start-menu-app-name">Google Chrome</p>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="start-menu-footer">
+                    <div class="start-menu-footer-contents">
+                        <div class="start-menu-user">
+                            <img class="start-menu-pfp-image" src="assets/others/lock-screen-pfp.png">
+                            <p class="start-menu-username">Jožko M</p>
+                        </div>
+                        <div class="start-menu-power-icon"></div>
+                    </div>
+                    
+                </div>
+                
+                
+            </div>
+
+        </div>
+        
+        <script src="script.js"></script>
+    </div>
+
+</body>
+</html>
+
+<p class="ahoj"></p>
+<p class="cau"></p>
