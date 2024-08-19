@@ -1,0 +1,177 @@
+
+textarea {
+    background-color: black;
+    border: solid 5px white;
+    border-radius: 10px;
+    color: white;
+    font-family: "Bebas Neue", sans-serif;
+}
+
+#characters {
+    width: 40%;
+    height: 30%;
+    max-width: 70%;
+    max-height: 50%;
+    min-width: 20%;
+    min-height: 20%;
+}
+
+
+
+.stats-wrapper {
+    position: relative;
+    margin-bottom: 50px;
+    height: 200px;
+    width: 70%;
+}
+
+.bg {
+    height: 100%;
+    border-bottom: 3px solid white;
+}
+
+.p25 {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 25%;
+}
+
+.p50 {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 50%;
+}
+
+.p75 {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 75%;
+}
+
+.p100 {
+    width: 100%;
+    height: 1px;
+    background-color: white;
+    position: absolute;
+    left: 0;
+    bottom: 100%;
+}
+
+.left-border {
+    width: 3px;
+    height: 100%;
+    background-color: white;
+    position: absolute;
+    left: 0;
+}
+
+.p-indicators {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    flex-direction: column-reverse;
+    height: 110%;
+    left: -35px;
+    top: -10px;
+}
+
+.stats {
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 115%;
+    width: 100%;
+    top: 0;
+}
+
+.stat {
+    height: 100%;
+    width: 1.5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+}
+
+.progress-wrapper {
+    position: relative;
+    height: 200px;
+    width: 100%;
+}
+
+.progress {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    bottom: 0;
+    width: 100%;
+    height: 0%;
+    background-color: greenyellow;
+    font-size: 11px;
+    transition: height 0.5s;
+}
+
+.progress-count {
+    color: black;
+}
+
+.progress-p {
+    position: absolute;
+    top: -15px;
+    left: 0;
+    right: 0;
+    text-align: center;
+}
+
+.settings-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 7;
+}
+
+.settings-box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -203px;
+    height: 200px;
+    width: 100%;
+    transition: top 0.5s;
+    background-color: black;
+    border-bottom: 3px solid white;
+    z-index: 5;
+}
+
+.character-settings {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.character-settings div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 200px;
+    margin-top: 5px;
+}
+
+.character-input {
+    width: 200px;
+}
+

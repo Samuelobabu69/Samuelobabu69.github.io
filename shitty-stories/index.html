@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./styles.css">
+
+    <title>Curiosities</title>
+</head>
+<body>
+    <h1 class="activity-title">Shitty Stories</h1>
+
+    <div class="startup-screen">
+        <button>Choose template</button>
+        <button class="create-btn">Create template</button>
+        <button class="howto-btn">How to</button>
+    </div>
+
+    <div class="create-screen">
+        <button>Create from scratch</button>
+        <button>Import shared template</button>
+        <button class="back">Back</button>
+    </div>
+
+    <div class="howto-screen">
+        <h1>Description</h1>
+        <p>
+            Shitty Stories is a couch game that can be played by however
+            many friends, or by yourself if you don't have any. Find and copy a 
+            story summary, like Cinderella, select the words that can be changed
+            for some funny stuff, and let your friends say words out loud to create
+            your own Shitty Story.
+        </p>
+        <h1>Rules</h1>
+        <p>
+            After creating or importing a template, you, the Storyteller,
+            shall now select one template you want to play with.
+            Your friends shouldn't know the name of the story/template, so keep it
+            to yourself for now. Your friends should be sitting in a circle. After
+            opening the template, you now will be asked to input the missing words.
+            One after another, you will tell your friends to say a word based on a 
+            description, for example "masculine noun" or "feminine adjective". Best
+            stories are created by saying the first bullshit that comes on your
+            mind, so tell your friends not to think about it too much. Your job is
+            to input the word into the story, but you are allowed to modify the word
+            a little to fit the logic of the sentence. If the word simply doesn't fit
+            the sentence, ask your friend to tell you another word. Repeat the
+            process until all words are filled in. After that, read the story title
+            and the story out loud. If you liked it, you have the option to save it
+            into gallery. Understood? Have a Shitty Storytelling!
+        </p>
+        <button class="back">Back</button>
+    </div>
+
+    <div class="step1">
+        <h1>Step 1: Write your story</h1>
+        <input type="text" class="story-title" placeholder="Title">
+        <textarea name="story" id="story"></textarea>
+        <button class="step1-next">Next</button>
+    </div>
+    <div class="step2">
+        <h1>Step 2: Select words to rewrite</h1>
+        <div class="word-select"></div>
+        <button class="step2-next">Next</button>
+    </div>
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+
+    <script src="../widgets/menu/script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

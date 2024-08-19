@@ -1,0 +1,51 @@
+.menu-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 60px;
+    height: 60px;
+    filter: invert(100%);
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    transition: filter 0.5s;
+    z-index: 10;
+}
+
+.menu-btn img {
+    max-width: 40px;
+}
+
+.menu-box {
+    width: 500px;
+    height: 100%;
+    background-color: black;
+    border-right: 3px solid white;
+    position: absolute;
+    left: -503px;
+    z-index: 9;
+    transition: left 0.5s;
+}
+
+.home-btn-wrapper {
+    display: inline-block;
+    position: absolute;
+    top: 5px;
+    right: 5px;
+}
+
+.home-btn {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: black;
+    border: 3px solid white;
+}
+
+.home-btn img {
+    max-width: 30px;
+    filter: invert(100%);
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <title>Curiosities</title>
+</head>
+<body>
+    <button class="settings-btn">Settings</button>
+    <div class="settings-box">
+        <div class="character-settings">
+            <p>Characters in Statistics</p>
+            <input type="text" class="character-input">
+            <div>
+                <button class="character-input-save">Save</button>
+                <button class="character-input-reset">Reset</button>
+            </div>
+        </div>
+    </div>
+    <h1 class="activity-title">Character Counter</h1>
+    <div class="stats-wrapper">
+        <div class="p-indicators">
+            <p>0%</p>
+            <p>25%</p>
+            <p>50%</p>
+            <p>75%</p>
+            <p>100%</p>
+        </div>
+        <div class="bg">
+            <div class="left-border"></div>
+            <div class="p25"></div>
+            <div class="p50"></div>
+            <div class="p75"></div>
+            <div class="p100"></div>
+        </div>
+        <div class="stats"></div>
+    </div>
+    <textarea id="characters" placeholder="Text goes here..."></textarea>
+    <p class="counter small-font">0</p>
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+    <script src="./script.js"></script>
+    <script src="../widgets/menu/script.js"></script>
+</body>
+</html>

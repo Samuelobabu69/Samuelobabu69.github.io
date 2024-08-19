@@ -1,0 +1,63 @@
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    background-color: black;
+    overflow: hidden;
+}
+
+p, input, button {
+    color: white;
+    font-family: "Bebas Neue", sans-serif;
+    margin: 0;
+    text-align: center;
+}
+
+p:hover {
+    cursor: default;
+}
+
+hr {
+    width: 95%;
+    
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+input:focus {
+    outline: none;
+}
+
+.big-font {
+    font-size: 48px;
+}
+
+.mid-font {
+    font-size: 30px;
+}
+
+.setup input::-webkit-inner-spin-button,
+.setup input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+
+
+.qr {
+    background-color: white;
+    width: 500px;
+    height: 500px;
+    border: 15px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
