@@ -18,6 +18,7 @@ $.getJSON("../config.json", (data) => {
 menuBtn.click(() => {
     if (!menuOpened) {
         menuOpened = true;
+        
         menuBox.css("left", "0px");
         menuBtn.css("filter", "invert(0%)");
         menuShade.css("display", "block");
@@ -31,12 +32,26 @@ menuBtn.click(() => {
 
     } else {
         menuOpened = false;
-        menuBox.css("left", "-503px");
-        menuBtn.css("filter", "invert(100%)");
-        menuShade.css("opacity", "0")
-        menuClosing = setTimeout(() => {
-            menuShade.css("display", "none");
-        }, 500);
+
+        if ($(window).width() <= 768) { // Typical breakpoint for mobile devices
+            
+            menuBox.css("left", "-105%");
+            menuBtn.css("filter", "invert(100%)");
+            menuShade.css("opacity", "0")
+            menuClosing = setTimeout(() => {
+                menuShade.css("display", "none");
+            }, 500);
+
+        } else {
+            
+            menuBox.css("left", "-503px");
+            menuBtn.css("filter", "invert(100%)");
+            menuShade.css("opacity", "0")
+            menuClosing = setTimeout(() => {
+                menuShade.css("display", "none");
+            }, 500);
+
+        }
     }
 });
 

@@ -215,4 +215,12 @@ input:focus {
         overflow-x: auto;
         padding: 10px;
     }
+
+    .howto-screen {
+        max-width: 95%;
+    }
+
+    .howto-screen p {
+        font-size: 15px;
+    }
 }
