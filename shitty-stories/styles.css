@@ -196,6 +196,12 @@ input:focus {
 }
 
 @media (max-width: 765px) {
+
+    .story-title {
+        font-size: large;
+        font-family: "Roboto Condensed", sans-serif;
+    }
+
     #story {
         width: 90%;
         height: 70%;

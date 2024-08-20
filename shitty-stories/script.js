@@ -10,6 +10,7 @@ $(document).ready(() => {
     const createBackBtn = $(".create-screen .back");
     const createStep1Screen = $(".create-step1-screen");
     const createStep1ScreenElems = $(".create-step1-screen *");
+    const createStep1Title = $(".story-title");
     const createStep1Next = $(".create-step1-next");
     const createCancelBtn = $(".create-cancel-btn")
     const createStep2Screen = $(".create-step2-screen");
@@ -56,6 +57,14 @@ $(document).ready(() => {
             }, 20);
         }, 500);
 
+    });
+
+    createStep1Title.on("input", () => {
+        if (createStep1Title.val()) {
+            $(".create-step1-screen h1").text("Step 1: Write your shitty " + createStep1Title.val())
+        } else {
+            $(".create-step1-screen h1").text("Step 1: Write your shitty template")
+        }
     });
 
     createCancelBtn.click(() => {
