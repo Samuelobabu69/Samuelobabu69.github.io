@@ -27,7 +27,7 @@
     </div>
 
     <div class="create-screen">
-        <button>Create from scratch</button>
+        <button class="create-from-scratch-btn">Create from scratch</button>
         <button>Import shared template</button>
         <button class="back">Back</button>
     </div>
@@ -62,16 +62,23 @@
         <button class="back">Back</button>
     </div>
 
-    <div class="step1">
+    <div class="create-step1-screen">
         <h1>Step 1: Write your story</h1>
         <input type="text" class="story-title" placeholder="Title">
         <textarea name="story" id="story"></textarea>
-        <button class="step1-next">Next</button>
+        <div>
+            <button class="create-cancel-btn">Cancel</button>
+            <button class="create-step1-next">Next</button>
+        </div>
     </div>
-    <div class="step2">
+
+    <div class="create-step2-screen">
         <h1>Step 2: Select words to rewrite</h1>
         <div class="word-select"></div>
-        <button class="step2-next">Next</button>
+        <div>
+            <button class="create-step2-back-btn">Back</button>
+            <button class="create-step2-next">Next</button>
+        </div>
     </div>
 
     <script
