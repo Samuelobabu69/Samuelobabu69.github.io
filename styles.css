@@ -199,4 +199,8 @@ input:focus {
         height: 100%;
         left: -105%;
     }
+
+    .small-font {
+        font-size: 15px;
+    }
 }

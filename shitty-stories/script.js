@@ -15,8 +15,13 @@ $(document).ready(() => {
     const createCancelBtn = $(".create-cancel-btn")
     const createStep2Screen = $(".create-step2-screen");
     const createStep2ScreenElems = $(".create-step2-screen *");
-    const createStep2NextBtn = $(".create-step1-next");
+    const createStep2NextBtn = $(".create-step2-next");
     const createStep2BackBtn = $(".create-step2-back-btn")
+    const createStep3Screen = $(".create-step3-screen");
+    const createStep3ScreenElems = $(".create-step3-screen *");
+    const createStep3FinishBtn = $(".create-step3-finish-btn");
+    const createStep3BackBtn = $(".create-step3-back-btn");
+    const wordDescriptor = $(".word-descriptor");
     const howtoBtn = $(".howto-btn");
     const howtoScreen = $(".howto-screen");
     const howtoScreenElems = $(".howto-screen *");
@@ -24,17 +29,18 @@ $(document).ready(() => {
     const wordSelect = $(".word-select");
 
     let createCancelBtnState = 0;
-    let story;
+    let story, words;
 
     createStep1Next.click(() => {
         story = storyElem.val();
         let storyFixed = story.replace(new RegExp("\n", "g"), " ");
-        let words = storyFixed.split(" ");
-
+        words = storyFixed.split(" ");
+        
         wordSelect.empty()
 
         for (let index = 0; index < words.length; index++) {
-            const element = $(`<div class="word">${words[index]}</div>`);
+
+            const element = $(`<div class="word" data-number="${index}">${words[index]}</div>`);
             element.click(() => {
                 if (element.css("opacity") == "0.3") {
                     element.css("opacity", "1");
@@ -43,7 +49,7 @@ $(document).ready(() => {
                 }
             })
             wordSelect.append(element)
-            
+
         }
 
         createStep1Screen.css("opacity", "0");
@@ -150,7 +156,7 @@ $(document).ready(() => {
             }, 20);
         }, 500);
 
-    })
+    });
 
     createStep2BackBtn.click(() => {
 
@@ -162,6 +168,65 @@ $(document).ready(() => {
             setTimeout(() => {
                 createStep1Screen.css("opacity", "1");
                 createStep1ScreenElems.css("margin", "5px");
+            }, 20);
+        }, 500);
+
+    });
+
+    createStep2NextBtn.click(() => {
+
+        let selected = [];
+
+        for (let index = 0; index < wordSelect.children().length; index++) {
+            const word = wordSelect.children().eq(index);
+            if (word.css("opacity") == "0.3") {
+                selected.push(Number(word.attr("data-number")))
+            }
+        }
+
+        console.log(selected)
+
+        for (let index = 0; index < words.length; index++) {
+
+            let element;
+
+            if (selected.indexOf(index) !== -1) {
+                element = $(`<input type="text" class="word" placeholder="${words[index]}">`);
+                //element = $(`<input type="color" value="#ffffff">`);
+
+            } else {
+                element = $(`<div class="word">${words[index]}</div>`);
+            }
+
+            // element.focus(() => {
+            //     let x = element.css("left");
+            //     let y = element.css("top");
+            //     let width = element.css("width");
+                
+            //     let colorPicker = $(`<input type="color" value="#ffffff">`)
+            //     colorPicker.css({
+            //         "position": "absolute",
+            //         "top" 
+            //     })
+                
+            // })
+
+            // element.blur(() => {
+            //     console.log("unfocused")
+            // })
+            
+            wordDescriptor.append(element)
+
+        }
+
+        createStep2Screen.css("opacity", "0");
+        createStep2ScreenElems.css("margin", "25px")
+        setTimeout(() => {
+            createStep2Screen.css("display", "none");
+            createStep3Screen.css("display", "flex");
+            setTimeout(() => {
+                createStep3Screen.css("opacity", "1");
+                createStep3ScreenElems.css("margin", "5px");
             }, 20);
         }, 500);
 

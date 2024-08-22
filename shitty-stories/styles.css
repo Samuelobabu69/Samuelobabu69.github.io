@@ -186,13 +186,56 @@ input:focus {
     padding: 10px;
 }
 
-
 .word {
     font-family: "Roboto Condensed", sans-serif;
     color: white;
     margin: 5px;
     margin-right: 10px;
     cursor: pointer;
+}
+
+.create-step3-screen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+.create-step3-screen * {
+    margin: 5px;
+    transition: margin 0.5s;
+}
+
+.create-step3-screen button {
+    width: 100px;
+    height: 40px;
+    margin-top: 10px;
+}
+
+.word-descriptor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    width: 50%;
+    height: 50%;
+    border: solid 5px white;
+    border-radius: 10px;
+    color: white;
+    overflow-x: auto;
+    padding: 10px;
+}
+
+.word-descriptor input {
+    border: none;
+    border-bottom: solid white 1px;
+    border-radius: 0;
 }
 
 @media (max-width: 765px) {
@@ -204,7 +247,7 @@ input:focus {
 
     #story {
         width: 90%;
-        height: 70%;
+        height: 50%;
         max-width: unset;
         max-height: unset;
         font-size: larger;
@@ -212,8 +255,19 @@ input:focus {
 
     .word-select {
         width: 90%;
-        height: 70%;
+        height: 50%;
         font-size: larger;
+    }
+
+    .word-descriptor {
+        width: 90%;
+        height: 50%;
+        font-size: larger;
+    }
+
+    .word-descriptor input {
+        font-size: large;
+        width: 100px;
     }
 
     .howto-screen {
