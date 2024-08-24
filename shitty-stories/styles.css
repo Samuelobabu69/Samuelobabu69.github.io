@@ -132,6 +132,10 @@ input:focus {
     margin-top: 10px;
 }
 
+.story-title {
+    font-family: "Roboto Condensed", sans-serif;
+}
+
 #story {
     width: 40%;
     height: 30%;
@@ -242,7 +246,6 @@ input:focus {
 
     .story-title {
         font-size: large;
-        font-family: "Roboto Condensed", sans-serif;
     }
 
     #story {

@@ -1,5 +1,9 @@
 $(document).ready(() => {
 
+    function rgbToHex(r, g, b) {
+        return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1).toUpperCase();
+    }
+
     const storyElem = $("#story");
     const startupScreen = $(".startup-screen")
     const startupScreenElems = $(".startup-screen *")
@@ -29,6 +33,7 @@ $(document).ready(() => {
     const wordSelect = $(".word-select");
 
     let createCancelBtnState = 0;
+    let selected = [];
     let story, words;
 
     createStep1Next.click(() => {
@@ -175,7 +180,7 @@ $(document).ready(() => {
 
     createStep2NextBtn.click(() => {
 
-        let selected = [];
+        selected = [];
 
         for (let index = 0; index < wordSelect.children().length; index++) {
             const word = wordSelect.children().eq(index);
@@ -184,38 +189,90 @@ $(document).ready(() => {
             }
         }
 
-        console.log(selected)
+        wordDescriptor.empty()
 
         for (let index = 0; index < words.length; index++) {
 
-            let element;
+            let input;
 
             if (selected.indexOf(index) !== -1) {
-                element = $(`<input type="text" class="word" placeholder="${words[index]}">`);
-                //element = $(`<input type="color" value="#ffffff">`);
+                input = $(`<input type="text" class="word" placeholder="${words[index]}" data-number="${index}">`);
+                
+                input.focus(() => {
+
+                    inputFocused = true;
+
+                    setTimeout(() => {
+                        let colorPicker = $(`<input type="color" value="#ffffff">`)
+                        let colorPickerFocused = false;
+                        let inputFocused = false;
+
+                        colorPicker.focus(() => {
+                            colorPickerFocused = true;
+                        })
+
+                        colorPicker.blur(() => {
+                            colorPickerFocused = false;
+
+                            setTimeout(() => {
+                                if (!inputFocused) {
+                                    colorPicker.remove()
+                                }
+                            }, 50);
+
+                        })
+
+                        colorPicker.on("input", () => {
+                            input.css({
+                                "color": colorPicker.val(),
+                                "border-bottom": `solid ${colorPicker.val()} 1px`
+                            })
+                        })
+
+                        input.blur(() => {
+                            inputFocused = false
+        
+                            setTimeout(() => {
+                                if (!colorPickerFocused) {
+                                    colorPicker.remove()
+                                }
+                                
+                            }, 50);
+        
+                        })
+                        
+
+                        let position = input.offset();
+                        let x = position.left;
+                        let y = position.top;
+                        let width = input.width();
+                        let height = input.height();
+                        let color = input.css("color");
+                        let colorRGB = color.slice(0, color.length-1).slice(4).split(", ");
+                        let colorHEX = rgbToHex(Number(colorRGB[0]), Number(colorRGB[1]), Number(colorRGB[2]))
+    
+    
+                        colorPicker.attr("value", colorHEX)
+    
+                        colorPicker.css({
+                            "position": "absolute",
+                            "top": y - height*2 + "px",
+                            "left": x + width/2 + "px",
+                            "transform": "translateX(-50%)"
+                        })
+                        
+                        $("body").append(colorPicker);
+                        
+                    }, 50);
+
+                })
 
             } else {
-                element = $(`<div class="word">${words[index]}</div>`);
+                input = $(`<div class="word">${words[index]}</div>`);
             }
 
-            // element.focus(() => {
-            //     let x = element.css("left");
-            //     let y = element.css("top");
-            //     let width = element.css("width");
-                
-            //     let colorPicker = $(`<input type="color" value="#ffffff">`)
-            //     colorPicker.css({
-            //         "position": "absolute",
-            //         "top" 
-            //     })
-                
-            // })
-
-            // element.blur(() => {
-            //     console.log("unfocused")
-            // })
-            
-            wordDescriptor.append(element)
+            wordDescriptor.append(input)
+           
 
         }
 
@@ -230,6 +287,45 @@ $(document).ready(() => {
             }, 20);
         }, 500);
 
+    });
+
+    createStep3BackBtn.click(() => {
+
+        createStep3Screen.css("opacity", "0");
+        createStep3ScreenElems.css("margin", "25px")
+        setTimeout(() => {
+            createStep3Screen.css("display", "none");
+            createStep2Screen.css("display", "flex");
+            setTimeout(() => {
+                createStep2Screen.css("opacity", "1");
+                createStep2ScreenElems.css("margin", "5px");
+            }, 20);
+        }, 500);
+
+    })
+
+    createStep3FinishBtn.click(() => {
+
+        let templateWords = [];
+
+        for (let index = 0; index < wordDescriptor.children().length; index++) {
+            const word = wordDescriptor.children().eq(index);
+            if (word.is("input")) {
+                let number = Number(word.attr("data-number"));
+                let description = word.val();
+                let color = word.css("color");
+
+                templateWords.push([number, description, color])
+            }
+        }
+
+        let template = {
+            "title": createStep1Title.val(),
+            "story": story,
+            "words": templateWords
+        }
+
+        console.log(template)
     });
 
     howtoBtn.click(() => {
