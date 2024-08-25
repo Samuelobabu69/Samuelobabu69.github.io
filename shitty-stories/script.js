@@ -5,8 +5,19 @@ $(document).ready(() => {
     }
 
     const storyElem = $("#story");
-    const startupScreen = $(".startup-screen")
-    const startupScreenElems = $(".startup-screen *")
+    const startupScreen = $(".startup-screen");
+    const startupScreenElems = $(".startup-screen *");
+    const playBtn = $(".play-btn");
+    const playScreen = $(".play-screen");
+    const playScreenElems = $(".play-screen *");
+    const playScreenTemplates = $(".play-screen-templates");
+    const playScreenBackBtn = $(".play-screen-back-btn");
+    const playScreenDeleteBtn = $(".play-screen-delete-btn");
+    const playScreenPlayBtn = $(".play-screen-play-btn");
+    const playTemplateScreen = $(".play-template-screen");
+    const playTemplateStory = $(".play-template-story");
+    const playTemplateBackBtn = $(".play-template-back-btn");
+    const playTemplateFinishBtn = $(".play-template-finish-btn");
     const createBtn = $(".create-btn");
     const createScreen = $(".create-screen");
     const createScreenElems = $(".create-screen *");
@@ -19,10 +30,12 @@ $(document).ready(() => {
     const createCancelBtn = $(".create-cancel-btn")
     const createStep2Screen = $(".create-step2-screen");
     const createStep2ScreenElems = $(".create-step2-screen *");
+    const createStep2Description = $(".create-step2-screen h1");
     const createStep2NextBtn = $(".create-step2-next");
     const createStep2BackBtn = $(".create-step2-back-btn")
     const createStep3Screen = $(".create-step3-screen");
     const createStep3ScreenElems = $(".create-step3-screen *");
+    const createStep3Description = $(".create-step3-screen h1");
     const createStep3FinishBtn = $(".create-step3-finish-btn");
     const createStep3BackBtn = $(".create-step3-back-btn");
     const wordDescriptor = $(".word-descriptor");
@@ -33,46 +46,218 @@ $(document).ready(() => {
     const wordSelect = $(".word-select");
 
     let createCancelBtnState = 0;
+    let playScreenDeleteBtnState = 0;
     let selected = [];
-    let story, words;
+    let story, words, playScreenSelectedTemplate;
 
-    createStep1Next.click(() => {
-        story = storyElem.val();
-        let storyFixed = story.replace(new RegExp("\n", "g"), " ");
-        words = storyFixed.split(" ");
-        
-        wordSelect.empty()
+    playBtn.click(() => {
 
-        for (let index = 0; index < words.length; index++) {
+        playScreenTemplates.empty()
 
-            const element = $(`<div class="word" data-number="${index}">${words[index]}</div>`);
-            element.click(() => {
-                if (element.css("opacity") == "0.3") {
-                    element.css("opacity", "1");
-                } else {
-                    element.css("opacity", "0.3");
-                }
-            })
-            wordSelect.append(element)
+        if (!localStorage.getItem("templates")) {
+            playScreenTemplates.append($(`<p class="no-templates">You have no templates. Import or create one.</p>`))
+        } else {
+            let templates = JSON.parse(localStorage.getItem("templates"))
 
+            for (let index = 0; index < templates.length; index++) {
+                const template = templates[index];
+                const templateBtn = $(`<button>${template["title"]}</button>`)
+
+                templateBtn.click(() => {
+                    playScreenTemplates.css({
+                        "background-color": "black",
+                        "color": "white"
+                    })
+                    templateBtn.css({
+                        "background-color": "white",
+                        "color": "black"
+                    })
+                    playScreenSelectedTemplate = templateBtn.text().toLowerCase()
+
+                    playScreenDeleteBtn.css("opacity", "1")
+                    playScreenPlayBtn.css("opacity", "1")
+                })
+
+                playScreenTemplates.append(templateBtn)
+                
+            }
         }
 
-        createStep1Screen.css("opacity", "0");
-        createStep1ScreenElems.css("margin", "25px")
+        playScreenDeleteBtn.css("opacity", "0.5")
+        playScreenPlayBtn.css("opacity", "0.5")
+        playScreenSelectedTemplate = undefined;
+
+        startupScreen.css("opacity", "0");
+        startupScreenElems.css("margin", "25px")
         setTimeout(() => {
-            createStep1Screen.css("display", "none");
-            createStep2Screen.css("display", "flex");
+            startupScreen.css("display", "none");
+            playScreen.css("display", "flex");
             setTimeout(() => {
-                createStep2Screen.css("opacity", "1");
-                createStep2ScreenElems.css("margin", "5px");
+                playScreen.css("opacity", "1");
+                playScreenElems.css("margin", "5px");
+
             }, 20);
         }, 500);
+    });
+
+    playScreenBackBtn.click(() => {
+        playScreen.css("opacity", "0");
+        playScreenElems.css("margin", "25px")
+        setTimeout(() => {
+            playScreen.css("display", "none");
+            startupScreen.css("display", "flex");
+            setTimeout(() => {
+                startupScreen.css("opacity", "1");
+                startupScreenElems.css("margin", "5px");
+            }, 20);
+        }, 500);
+    });
+
+    playScreenDeleteBtn.click(() => {
+        if (playScreenDeleteBtnState === 0 && playScreenSelectedTemplate) {
+
+            playScreenDeleteBtnState = 1;
+            playScreenDeleteBtn.text("Delete?")
+            playScreenDeleteBtn.css({
+                "color": "black",
+                "background-color": "white",
+            });
+
+            setTimeout(() => {
+                playScreenDeleteBtn.css({
+                    "color": "white",
+                    "background-color": "black",
+                    "transition": "color 2s, background-color 2s"
+                });
+                setTimeout(() => {
+                    playScreenDeleteBtn.text("Delete")
+                    playScreenDeleteBtn.css("transition", "color 0s, background-color 0s")
+                    playScreenDeleteBtnState = 0;
+                }, 2000);
+            }, 10);
+
+        } else {
+
+            let templateName;
+            let savedTemplates = JSON.parse(localStorage.getItem("templates"))
+
+            for (let index = 0; index < playScreenTemplates.children().length; index++) {
+                const templateElem = playScreenTemplates.children().eq(index);
+                if (templateElem.css("background-color") == "rgb(255, 255, 255)") {
+                    templateName = templateElem.text().toLowerCase()
+                    templateElem.remove()
+                    playScreenDeleteBtn.css("opacity", "0.5")
+                    playScreenPlayBtn.css("opacity", "0.5")
+                    playScreenSelectedTemplate = undefined;
+                }
+            }
+
+            for (let index = 0; index < savedTemplates.length; index++) {
+                const template = savedTemplates[index];
+                if (templateName === template["title"].toLowerCase()) {
+                    savedTemplates.splice(index)
+                }
+            }
+
+            localStorage.setItem("templates", JSON.stringify(savedTemplates))
+
+            if (JSON.parse(localStorage.getItem("templates")).length === 0) {
+                localStorage.removeItem("templates")
+            }
+        }
+    });
+
+    createStep1Next.click(() => {
+        let timeout1, timeout2, timeout3, timeout4;
+        let storyTitleExists = false;
+
+        if (localStorage.getItem("templates")) {
+            let templates = JSON.parse(localStorage.getItem("templates"))
+
+            for (let index = 0; index < templates.length; index++) {
+                const template = templates[index];
+                if (createStep1Title.val().trim().toLowerCase() === template["title"].toLowerCase()) {
+                    storyTitleExists = true;
+                }
+                
+            }
+        } 
+
+        if (storyElem.val().trim() && createStep1Title.val().trim() && !storyTitleExists) {
+
+            story = storyElem.val();
+            let storyFixed = story.replace(new RegExp("\n", "g"), " ");
+            words = storyFixed.split(" ");
+            
+            wordSelect.empty()
+    
+            for (let index = 0; index < words.length; index++) {
+    
+                const element = $(`<div class="word" data-number="${index}">${words[index]}</div>`);
+                element.click(() => {
+                    if (element.css("opacity") == "0.3") {
+                        element.css("opacity", "1");
+                    } else {
+                        element.css("opacity", "0.3");
+                    }
+                })
+                wordSelect.append(element)
+    
+            }
+    
+            createStep1Screen.css("opacity", "0");
+            createStep1ScreenElems.css("margin", "25px")
+            setTimeout(() => {
+                createStep1Screen.css("display", "none");
+                createStep2Screen.css("display", "flex");
+                setTimeout(() => {
+                    createStep2Screen.css("opacity", "1");
+                    createStep2ScreenElems.css("margin", "5px");
+                }, 20);
+            }, 500);
+            
+        } else {
+            if (!storyElem.val().trim()) {
+                
+                clearTimeout(timeout1)
+                clearTimeout(timeout2) 
+
+                storyElem.css("border-color", "red");
+
+                timeout1 = setTimeout(() => {
+                    storyElem.css({
+                        "border-color": "white",
+                        "transition": "border-color 1s, margin 0.5s"
+                    });
+                    timeout2 = setTimeout(() => {
+                        storyElem.css("transition", "border-color 0s, margin 0.5s")
+                    }, 1000);
+                }, 10);
+            }
+            if (!createStep1Title.val().trim() || storyTitleExists) {
+                
+                clearTimeout(timeout3)
+                clearTimeout(timeout4) 
+                
+                createStep1Title.css("border-color", "red");
+
+                timeout3 = setTimeout(() => {
+                    createStep1Title.css({
+                        "border-color": "white",
+                        "transition": "border-color 1s, margin 0.5s"
+                    });
+                    timeout4 = setTimeout(() => {
+                        createStep1Title.css("transition", "border-color 0s, margin 0.5s")
+                    }, 1000);
+                }, 10);
+            }
+        }
 
     });
 
     createStep1Title.on("input", () => {
-        if (createStep1Title.val()) {
-            $(".create-step1-screen h1").text("Step 1: Write your shitty " + createStep1Title.val())
+        if (createStep1Title.val().trim()) {
+            $(".create-step1-screen h1").text("Step 1: Write your shitty " + createStep1Title.val().trim())
         } else {
             $(".create-step1-screen h1").text("Step 1: Write your shitty template")
         }
@@ -180,6 +365,8 @@ $(document).ready(() => {
 
     createStep2NextBtn.click(() => {
 
+        let timeout1, timeout2;
+
         selected = [];
 
         for (let index = 0; index < wordSelect.children().length; index++) {
@@ -189,103 +376,122 @@ $(document).ready(() => {
             }
         }
 
-        wordDescriptor.empty()
+        if (selected.length !== 0) {
 
-        for (let index = 0; index < words.length; index++) {
-
-            let input;
-
-            if (selected.indexOf(index) !== -1) {
-                input = $(`<input type="text" class="word" placeholder="${words[index]}" data-number="${index}">`);
-                
-                input.focus(() => {
-
-                    inputFocused = true;
-
-                    setTimeout(() => {
-                        let colorPicker = $(`<input type="color" value="#ffffff">`)
-                        let colorPickerFocused = false;
-                        let inputFocused = false;
-
-                        colorPicker.focus(() => {
-                            colorPickerFocused = true;
-                        })
-
-                        colorPicker.blur(() => {
-                            colorPickerFocused = false;
-
-                            setTimeout(() => {
-                                if (!inputFocused) {
-                                    colorPicker.remove()
-                                }
-                            }, 50);
-
-                        })
-
-                        colorPicker.on("input", () => {
-                            input.css({
-                                "color": colorPicker.val(),
-                                "border-bottom": `solid ${colorPicker.val()} 1px`
+            wordDescriptor.empty()
+    
+            for (let index = 0; index < words.length; index++) {
+    
+                let input;
+    
+                if (selected.indexOf(index) !== -1) {
+                    input = $(`<input type="text" class="word" placeholder="${words[index]}" data-number="${index}">`);
+                    
+                    input.focus(() => {
+    
+                        inputFocused = true;
+    
+                        setTimeout(() => {
+                            let colorPicker = $(`<input type="color" value="#ffffff">`)
+                            let colorPickerFocused = false;
+                            let inputFocused = false;
+    
+                            colorPicker.focus(() => {
+                                colorPickerFocused = true;
                             })
-                        })
-
-                        input.blur(() => {
-                            inputFocused = false
+    
+                            colorPicker.blur(() => {
+                                colorPickerFocused = false;
+    
+                                setTimeout(() => {
+                                    if (!inputFocused) {
+                                        colorPicker.remove()
+                                    }
+                                }, 50);
+    
+                            })
+    
+                            colorPicker.on("input", () => {
+                                input.css({
+                                    "color": colorPicker.val(),
+                                    "border-bottom": `solid ${colorPicker.val()} 1px`
+                                })
+                            })
+    
+                            input.blur(() => {
+                                inputFocused = false
+            
+                                setTimeout(() => {
+                                    if (!colorPickerFocused) {
+                                        colorPicker.remove()
+                                    }
+                                    
+                                }, 50);
+            
+                            })
+                            
+    
+                            let position = input.offset();
+                            let x = position.left;
+                            let y = position.top;
+                            let width = input.width();
+                            let height = input.height();
+                            let color = input.css("color");
+                            let colorRGB = color.slice(0, color.length-1).slice(4).split(", ");
+                            let colorHEX = rgbToHex(Number(colorRGB[0]), Number(colorRGB[1]), Number(colorRGB[2]))
         
-                            setTimeout(() => {
-                                if (!colorPickerFocused) {
-                                    colorPicker.remove()
-                                }
-                                
-                            }, 50);
         
-                        })
-                        
-
-                        let position = input.offset();
-                        let x = position.left;
-                        let y = position.top;
-                        let width = input.width();
-                        let height = input.height();
-                        let color = input.css("color");
-                        let colorRGB = color.slice(0, color.length-1).slice(4).split(", ");
-                        let colorHEX = rgbToHex(Number(colorRGB[0]), Number(colorRGB[1]), Number(colorRGB[2]))
+                            colorPicker.attr("value", colorHEX)
+        
+                            colorPicker.css({
+                                "position": "absolute",
+                                "top": y - height*2 + "px",
+                                "left": x + width/2 + "px",
+                                "transform": "translateX(-50%)"
+                            })
+                            
+                            $("body").append(colorPicker);
+                            
+                        }, 50);
     
+                    })
     
-                        colorPicker.attr("value", colorHEX)
+                } else {
+                    input = $(`<div class="word">${words[index]}</div>`);
+                }
     
-                        colorPicker.css({
-                            "position": "absolute",
-                            "top": y - height*2 + "px",
-                            "left": x + width/2 + "px",
-                            "transform": "translateX(-50%)"
-                        })
-                        
-                        $("body").append(colorPicker);
-                        
-                    }, 50);
-
-                })
-
-            } else {
-                input = $(`<div class="word">${words[index]}</div>`);
+                wordDescriptor.append(input)
+               
+                createStep2Screen.css("opacity", "0");
+                createStep2ScreenElems.css("margin", "25px")
+                setTimeout(() => {
+                    createStep2Screen.css("display", "none");
+                    createStep3Screen.css("display", "flex");
+                    setTimeout(() => {
+                        createStep3Screen.css("opacity", "1");
+                        createStep3ScreenElems.css("margin", "5px");
+                    }, 20);
+                }, 500);
             }
 
-            wordDescriptor.append(input)
-           
+        } else {
+
+            clearTimeout(timeout1)
+            clearTimeout(timeout2) 
+
+            createStep2Description.css("color", "red");
+
+            timeout1 = setTimeout(() => {
+                createStep2Description.css({
+                    "color": "white",
+                    "transition": "color 1s, margin 0.5s"
+                });
+                timeout2 = setTimeout(() => {
+                    createStep2Description.css("transition", "color 0s, margin 0.5s")
+                }, 1000);
+            }, 10);
 
         }
-
-        createStep2Screen.css("opacity", "0");
-        createStep2ScreenElems.css("margin", "25px")
-        setTimeout(() => {
-            createStep2Screen.css("display", "none");
-            createStep3Screen.css("display", "flex");
-            setTimeout(() => {
-                createStep3Screen.css("opacity", "1");
-                createStep3ScreenElems.css("margin", "5px");
-            }, 20);
-        }, 500);
 
     });
 
@@ -304,28 +510,88 @@ $(document).ready(() => {
 
     })
 
-    createStep3FinishBtn.click(() => {
+    createStep3FinishBtn.click(async () => {
+
+        let timeout1, timeout2;
 
         let templateWords = [];
+        let allDescriptionsInserted = true;
 
         for (let index = 0; index < wordDescriptor.children().length; index++) {
             const word = wordDescriptor.children().eq(index);
             if (word.is("input")) {
                 let number = Number(word.attr("data-number"));
-                let description = word.val();
+                let description = word.val().trim();
                 let color = word.css("color");
+
+                if (!description) {
+                    allDescriptionsInserted = false
+                }
 
                 templateWords.push([number, description, color])
             }
         }
 
         let template = {
-            "title": createStep1Title.val(),
+            "title": createStep1Title.val().trim(),
             "story": story,
             "words": templateWords
         }
 
-        console.log(template)
+        if (allDescriptionsInserted) {
+
+            let templates = [];
+
+            if (localStorage.getItem("templates")) {
+                templates = await JSON.parse(localStorage.getItem("templates"));
+            }
+            templates.push(template)
+            localStorage.setItem("templates", JSON.stringify(templates));
+
+            createStep3FinishBtn.css({
+                "color": "black",
+                "background-color": "lime",
+                "border-color": "lime"
+            })
+            createStep3FinishBtn.text("Finished!")
+            setTimeout(() => {
+                createStep3Screen.css("opacity", "0");
+                createStep3ScreenElems.css("margin", "25px")
+                setTimeout(() => {
+                    createStep3Screen.css("display", "none");
+                    startupScreen.css("display", "flex");
+                    setTimeout(() => {
+                        startupScreen.css("opacity", "1");
+                        startupScreenElems.css("margin", "5px");
+                        createStep3FinishBtn.css({
+                            "color": "white",
+                            "background-color": "black",
+                            "border-color": "white"
+                        })
+                        createStep3FinishBtn.text("Finish")
+                    }, 20);
+                }, 500);
+            }, 400);
+
+        } else {
+
+            clearTimeout(timeout1)
+            clearTimeout(timeout2) 
+
+            createStep3Description.css("color", "red");
+
+            timeout1 = setTimeout(() => {
+                createStep3Description.css({
+                    "color": "white",
+                    "transition": "color 1s, margin 0.5s"
+                });
+                timeout2 = setTimeout(() => {
+                    createStep3Description.css("transition", "color 0s, margin 0.5s")
+                }, 1000);
+            }, 10);
+        }
+
+        
     });
 
     howtoBtn.click(() => {
@@ -358,3 +624,4 @@ $(document).ready(() => {
 
     });
 });
+
