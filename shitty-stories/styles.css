@@ -116,6 +116,14 @@ input:focus {
     margin: 10px;
 }
 
+.play-screen-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: center;
+}
+
 .no-templates {
     opacity: 0.3;
     font-size: 15px;
@@ -144,7 +152,7 @@ input:focus {
     width: 150px;
     height: 50px;
     font-size: 15px;
-}   
+}    
 
 .play-screen-story {
     overflow-x: hidden;
@@ -204,6 +212,35 @@ input:focus {
     height: 50px;
     font-size: 15px;
 }
+
+
+.import-screen {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+    transition: opacity 0.5s;
+    opacity: 0;
+}
+
+.import-screen * {
+    margin: 25px;
+    transition: margin 0.5s;
+}
+
+.import-screen button {
+    width: 150px;
+    height: 50px;
+    font-size: 15px;
+}    
+
+.import-input {
+    width: 150px;
+    font-size: 15px;
+}
+
 
 .create-step1-screen {
     display: none;

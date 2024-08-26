@@ -12,6 +12,7 @@ $(document).ready(() => {
     const playScreenElems = $(".play-screen *");
     const playScreenTemplates = $(".play-screen-templates");
     const playScreenBackBtn = $(".play-screen-back-btn");
+    const playScreenShareBtn = $(".play-screen-share-btn");
     const playScreenDeleteBtn = $(".play-screen-delete-btn");
     const playScreenPlayBtn = $(".play-screen-play-btn");
     const playTemplateScreen = $(".play-template-screen");
@@ -22,6 +23,12 @@ $(document).ready(() => {
     const createScreen = $(".create-screen");
     const createScreenElems = $(".create-screen *");
     const createFromScratchBtn = $(".create-from-scratch-btn");
+    const importSharedBtn = $(".import-shared-btn");
+    const importScreen = $(".import-screen");
+    const importScreenElems = $(".import-screen *");
+    const importInput = $(".import-input");
+    const importScreenBackBtn = $(".import-screen-back-btn");
+    const importScreenImportBtn = $(".import-screen-import-btn");
     const createBackBtn = $(".create-screen .back");
     const createStep1Screen = $(".create-step1-screen");
     const createStep1ScreenElems = $(".create-step1-screen *");
@@ -74,6 +81,7 @@ $(document).ready(() => {
                     })
                     playScreenSelectedTemplate = templateBtn.text().toLowerCase()
 
+                    playScreenShareBtn.css("opacity", "1")
                     playScreenDeleteBtn.css("opacity", "1")
                     playScreenPlayBtn.css("opacity", "1")
                 })
@@ -83,6 +91,7 @@ $(document).ready(() => {
             }
         }
 
+        playScreenShareBtn.css("opacity", "0.5")
         playScreenDeleteBtn.css("opacity", "0.5")
         playScreenPlayBtn.css("opacity", "0.5")
         playScreenSelectedTemplate = undefined;
@@ -113,6 +122,43 @@ $(document).ready(() => {
         }, 500);
     });
 
+    playScreenShareBtn.click(async () => {
+
+        if (playScreenSelectedTemplate) {
+
+            let templates = await JSON.parse(localStorage.getItem("templates"));
+
+            for (let index = 0; index < templates.length; index++) {
+                const template = templates[index];
+                if (template["title"].toLowerCase() === playScreenSelectedTemplate.toLowerCase()) {
+                    
+                    navigator.clipboard.writeText(JSON.stringify(template))
+                }
+                
+            }
+
+            playScreenShareBtn.text("Copied!")
+            playScreenShareBtn.css({
+                "background-color": "lime",
+                "border-color": "lime"
+            });
+
+            setTimeout(() => {
+                playScreenShareBtn.css({
+                    "background-color": "black",
+                    "border-color": "white",
+                    "transition": "border-color 0.5s, background-color 0.5s, margin 0.5s"
+                });
+                setTimeout(() => {
+                    playScreenShareBtn.text("Share")
+                    playScreenShareBtn.css("transition", "border-color 0s, background-color 0s, margin 0.5s")
+                }, 500);
+            }, 1500);
+
+        }
+
+    });
+
     playScreenDeleteBtn.click(() => {
         if (playScreenDeleteBtnState === 0 && playScreenSelectedTemplate) {
 
@@ -127,14 +173,14 @@ $(document).ready(() => {
                 playScreenDeleteBtn.css({
                     "color": "white",
                     "background-color": "black",
-                    "transition": "color 2s, background-color 2s"
+                    "transition": "color 0.5s, background-color 0.5s, margin 0.5s"
                 });
                 setTimeout(() => {
                     playScreenDeleteBtn.text("Delete")
-                    playScreenDeleteBtn.css("transition", "color 0s, background-color 0s")
+                    playScreenDeleteBtn.css("transition", "color 0s, background-color 0s, margin 0.5s")
                     playScreenDeleteBtnState = 0;
-                }, 2000);
-            }, 10);
+                }, 500);
+            }, 1500);
 
         } else {
 
@@ -146,6 +192,7 @@ $(document).ready(() => {
                 if (templateElem.css("background-color") == "rgb(255, 255, 255)") {
                     templateName = templateElem.text().toLowerCase()
                     templateElem.remove()
+                    playScreenShareBtn.css("opacity", "0.5")
                     playScreenDeleteBtn.css("opacity", "0.5")
                     playScreenPlayBtn.css("opacity", "0.5")
                     playScreenSelectedTemplate = undefined;
@@ -166,6 +213,118 @@ $(document).ready(() => {
             }
         }
     });
+
+    importSharedBtn.click(() => {
+        importInput.val("")
+
+        createScreen.css("opacity", "0");
+            createScreenElems.css("margin", "25px")
+            setTimeout(() => {
+                createScreen.css("display", "none");
+                importScreen.css("display", "flex");
+                setTimeout(() => {
+                    importScreen.css("opacity", "1");
+                    importScreenElems.css("margin", "5px");
+                }, 20);
+            }, 500);
+    });
+
+    importScreenImportBtn.click(async () => {
+
+        let invalidTemplate = false;
+        let importedTemplate;
+        try {
+            importedTemplate = JSON.parse(importInput.val().trim());
+        
+        } catch {
+            invalidTemplate = true;
+        
+        }
+
+        if (!invalidTemplate) {
+
+            if (!("title" in importedTemplate) || !("story" in importedTemplate) || !("words" in importedTemplate)) {
+                invalidTemplate = true;
+            
+            }
+    
+            for (let index = 0; index < importedTemplate["words"].length; index++) {
+                const word = importedTemplate["words"][index];
+                if ((word[0] === undefined) || (typeof word[0] === "string") || (importedTemplate["story"].split().length > word[0])) {
+                    invalidTemplate = true
+                
+                }
+    
+                if ((word[1] === undefined) || (typeof word[1] === "number")) {
+                    invalidTemplate = true
+                
+                }
+    
+                if ((word[2] === undefined) || (typeof word[2] === "number")) {
+                    invalidTemplate = true
+                
+                }
+                
+            }
+        }
+
+        if (invalidTemplate) {
+            importScreenImportBtn.css({
+                "background-color": "red",
+                "border-color": "red"
+            })
+            importScreenImportBtn.text("Invalid")
+            setTimeout(() => {
+                importScreenImportBtn.css({
+                    "background-color": "black",
+                    "border-color": "white"
+                })
+                importScreenImportBtn.text("Import")
+            }, 2000);
+        } else {
+            
+            let templates = [];
+            if (localStorage.getItem("templates")) {
+                templates = await JSON.parse(localStorage.getItem("templates"));
+            }
+
+            templates.push(importedTemplate);
+            localStorage.setItem("templates", JSON.stringify(templates));
+
+            importInput.val("")
+
+            importScreenImportBtn.css({
+                "background-color": "lime",
+                "border-color": "lime"
+            })
+            importScreenImportBtn.text("Imported!")
+            setTimeout(() => {
+                importScreenImportBtn.css({
+                    "background-color": "black",
+                    "border-color": "white"
+                })
+                importScreenImportBtn.text("Import")
+            }, 2000);
+        }
+
+
+
+
+    });
+
+    importScreenBackBtn.click(() => {
+        importScreen.css("opacity", "0");
+            importScreenElems.css("margin", "25px")
+            setTimeout(() => {
+                importScreen.css("display", "none");
+                createScreen.css("display", "flex");
+                setTimeout(() => {
+                    createScreen.css("opacity", "1");
+                    createScreenElems.css("margin", "5px");
+                }, 20);
+            }, 500);
+    });
+
 
     createStep1Next.click(() => {
         let timeout1, timeout2, timeout3, timeout4;
@@ -277,14 +436,14 @@ $(document).ready(() => {
                 createCancelBtn.css({
                     "color": "white",
                     "background-color": "black",
-                    "transition": "color 2s, background-color 2s"
+                    "transition": "color 0.5s, background-color 0.5s, margin 0.5s"
                 });
                 setTimeout(() => {
                     createCancelBtn.text("Cancel")
-                    createCancelBtn.css("transition", "color 0s, background-color 0s")
+                    createCancelBtn.css("transition", "color 0s, background-color 0s, margin 0.5s")
                     createCancelBtnState = 0;
-                }, 2000);
-            }, 10);
+                }, 500);
+            }, 1500);
 
         } else {
 
@@ -334,6 +493,8 @@ $(document).ready(() => {
     createFromScratchBtn.click(() => {
 
         storyElem.val("")
+        createStep1Title.val("")
+        $(".create-step1-screen h1").text("Step 1: Write your shitty template");
 
         createScreen.css("opacity", "0");
         createScreenElems.css("margin", "25px")
