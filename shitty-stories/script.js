@@ -16,8 +16,10 @@ $(document).ready(() => {
     const playScreenDeleteBtn = $(".play-screen-delete-btn");
     const playScreenPlayBtn = $(".play-screen-play-btn");
     const playTemplateScreen = $(".play-template-screen");
+    const playTemplateScreenElems = $(".play-template-screen *");
+    const playTemplateTitle = $(".play-template-title");
     const playTemplateStory = $(".play-template-story");
-    const playTemplateBackBtn = $(".play-template-back-btn");
+    const playTemplateCancelBtn = $(".play-template-cancel-btn");
     const playTemplateFinishBtn = $(".play-template-finish-btn");
     const createBtn = $(".create-btn");
     const createScreen = $(".create-screen");
@@ -53,6 +55,7 @@ $(document).ready(() => {
     const wordSelect = $(".word-select");
 
     let createCancelBtnState = 0;
+    let playTemplateScreenCancelBtnState = 0;
     let playScreenDeleteBtnState = 0;
     let selected = [];
     let story, words, playScreenSelectedTemplate;
@@ -213,6 +216,75 @@ $(document).ready(() => {
             }
         }
     });
+
+    playScreenPlayBtn.click(async () => {
+
+        if (playScreenSelectedTemplate) {
+            
+            let templates = await JSON.parse(localStorage.getItem("templates"));
+
+            for (let index = 0; index < templates.length; index++) {
+                const template = templates[index];
+                if (template["title"].toLowerCase() === playScreenSelectedTemplate.toLowerCase()) {
+                    playTemplateTitle.text(template["title"])
+                    playTemplateStory.text(template["story"])
+
+                    // let words = template["story"].split(" ");
+
+                    
+                }
+            }
+
+            playScreen.css("opacity", "0");
+                playScreenElems.css("margin", "25px")
+                setTimeout(() => {
+                    playScreen.css("display", "none");
+                    playTemplateScreen.css("display", "flex");
+                    setTimeout(() => {
+                        playTemplateScreen.css("opacity", "1");
+                        playTemplateScreenElems.css("margin", "5px");
+                    }, 20);
+                }, 500);
+        }
+    });
+
+    playTemplateCancelBtn.click(() => {
+        if (playTemplateScreenCancelBtnState === 0) {
+
+            playTemplateScreenCancelBtnState = 1;
+            playTemplateCancelBtn.text("Cancel?")
+            playTemplateCancelBtn.css({
+                "color": "black",
+                "background-color": "white",
+            });
+
+            setTimeout(() => {
+                playTemplateCancelBtn.css({
+                    "color": "white",
+                    "background-color": "black",
+                    "transition": "color 0.5s, background-color 0.5s, margin 0.5s"
+                });
+                setTimeout(() => {
+                    playTemplateCancelBtn.text("Cancel")
+                    playTemplateCancelBtn.css("transition", "color 0s, background-color 0s, margin 0.5s")
+                    playTemplateScreenCancelBtnState = 0;
+                }, 500);
+            }, 1500);
+
+        } else {
+
+            playTemplateScreen.css("opacity", "0");
+            playTemplateScreenElems.css("margin", "25px")
+            setTimeout(() => {
+                playTemplateScreen.css("display", "none");
+                playScreen.css("display", "flex");
+                setTimeout(() => {
+                    playScreen.css("opacity", "1");
+                    playScreenElems.css("margin", "5px");
+                }, 20);
+            }, 500);
+        }
+    })
 
     importSharedBtn.click(() => {
         importInput.val("")

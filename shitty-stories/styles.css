@@ -154,7 +154,7 @@ input:focus {
     font-size: 15px;
 }    
 
-.play-screen-story {
+.play-template-story {
     overflow-x: hidden;
     overflow-y: auto;
     width: 400px;
@@ -166,6 +166,7 @@ input:focus {
     font-family: "Roboto Condensed", sans-serif;
     display: flex;
     justify-content: center;
+    padding: 5px;
 }
 
 
