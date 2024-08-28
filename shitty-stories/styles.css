@@ -163,10 +163,13 @@ input:focus {
     border: solid 5px white;
     border-radius: 10px;
     color: white;
-    font-family: "Roboto Condensed", sans-serif;
     display: flex;
     justify-content: center;
     padding: 5px;
+}
+
+.play-template-story * {
+    font-family: "Roboto Condensed", sans-serif;
 }
 
 

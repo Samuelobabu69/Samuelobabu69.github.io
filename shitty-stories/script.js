@@ -18,7 +18,8 @@ $(document).ready(() => {
     const playTemplateScreen = $(".play-template-screen");
     const playTemplateScreenElems = $(".play-template-screen *");
     const playTemplateTitle = $(".play-template-title");
-    const playTemplateStory = $(".play-template-story");
+    const playTemplateStoryElem = $(".play-template-story");
+    const playTemplateStory = $(".play-template-story p");
     const playTemplateCancelBtn = $(".play-template-cancel-btn");
     const playTemplateFinishBtn = $(".play-template-finish-btn");
     const createBtn = $(".create-btn");
@@ -220,20 +221,52 @@ $(document).ready(() => {
     playScreenPlayBtn.click(async () => {
 
         if (playScreenSelectedTemplate) {
-            
+
+            playTemplateStory.text("")
+              
             let templates = await JSON.parse(localStorage.getItem("templates"));
+            let template, words;
 
             for (let index = 0; index < templates.length; index++) {
-                const template = templates[index];
+                template = templates[index];
                 if (template["title"].toLowerCase() === playScreenSelectedTemplate.toLowerCase()) {
                     playTemplateTitle.text(template["title"])
-                    playTemplateStory.text(template["story"])
 
-                    // let words = template["story"].split(" ");
-
+                    words = template["story"].split(" ");
+                    
+                    break
                     
                 }
             }
+
+            let isInRewrites, templateWord;
+            let storyToDisplay = "";
+
+            for (let word_index = 0; word_index < words.length; word_index++) {
+                const word = words[word_index];
+                isInRewrites = false
+                
+                for (let index = 0; index < template["words"].length; index++) {
+                    templateWord = template["words"][index];
+                    
+                    if (templateWord[0] === word_index) {
+                        isInRewrites = true;
+                        break
+                    }
+                }
+
+                if (isInRewrites) {
+                    playTemplateStory.append(storyToDisplay);
+                    storyToDisplay = ""
+                    let inputElem = $(`<input type="text" placeholder="${templateWord[1]}" style="color: ${templateWord[2]}; border: none; border-bottom: solid ${templateWord[2]} 1px; border-radius: 0; margin: 0; margin-left: 3px;">`)
+                    playTemplateStory.append(inputElem);
+                    playTemplateStory.append(" ")
+                } else {
+                    storyToDisplay = storyToDisplay + word + " ";
+                }
+            }
+
+            playTemplateStory.append(storyToDisplay);
 
             playScreen.css("opacity", "0");
                 playScreenElems.css("margin", "25px")
