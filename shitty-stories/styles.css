@@ -159,6 +159,8 @@ input:focus {
     overflow-y: auto;
     width: 400px;
     height: 50%;
+    max-width: 90%;
+    max-height: 50%;
     background-color: black;
     border: solid 5px white;
     border-radius: 10px;
