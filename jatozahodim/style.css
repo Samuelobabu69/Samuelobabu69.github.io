@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.ball {
+    position: absolute;
+    height: 150px;
+    width: 150px;
+    background-color: blue;
+    border-radius: 75px;
+    top: 150px;
+}
+
+.fullscreen-screen {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.distance {
+    color: white;
+}
+
+.history {
+    position: absolute;
+    top: 0;
+    right: 0;
+    color: white;
+    font-size: x-small;
+}
