@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="./styles.css">
+
+    <title>Curiosities</title>
+</head>
+<body>
+    <h1 class="activity-title">Relationship Destroyer</h1>
+
+    <div class="d-flex fd-column screen-default welcome-screen" id="startup-screen">
+        <button class="play-btn">Play</button>
+        <button class="rules-btn">Rules</button>
+    </div>
+
+    <div class="d-flex fd-column screen-default" id="rules-screen">
+        <h1>Rules</h1>
+        <p>
+            This game can be played with 3+ players, but 5+ players is recommended. 
+            Make sure y'all have perfect relationships to destroy. Sit in a circle. 
+            Whoever wants to start (Player A) draws a question and reads it for himself.
+            He will then have an option to "discard" or "answer" the question. If
+            Player A for any reason can't of doesn't want to answer the question, he
+            "discards" the question, without revealing the question or his answer to
+            it to anyone and gives the phone to the next player on his left and the
+            game continues clockwise. If Player A chooses to "answer" the question, he 
+            chooses a person (Player B) that he thinks this question describes him the most.
+            Player B now closes his eyes or turns around, and Player A now shows all players 
+            his question, except player B. Now that everyone saw the question, Player A now 
+            has to spin the wheel, which decides if Player B gets to see the question or not. 
+            If the wheel rolls "Yes", Player B gets to see the question. If it rolls "No", 
+            the question is discarded and noone can tell the question to Player B. Player A 
+            then hands the phone to a player on his left and the game continues clockwise.
+        </p>
+        <p>Keep playing until everyone hates each other. :)</p>
+        <p>This game is heavily inspired by Stir the Pot card game, with some modifications.</p>
+        <button class="back-btn">Back</button>
+    </div>
+
+    <div class="d-flex fd-column screen-default" id="play-screen">
+        <div class="question-box">
+            <h1 class="question-text-en">Otazka velmi dobra anglicka</h1>
+            <h1 class="question-text-sk">Otazka velmi dobra slovenska</h1>
+        </div>
+        <div class="d-flex question-box-cover">
+            <h1>Tap to reveal</h1>
+        </div>
+        <div class="d-flex question-actions">
+            <button id="question-discard">Discard</button>
+            <button id="question-answer">Answer</button>
+        </div>
+        <div class="d-flex wheel">
+            <h1 class="wheel-show-him">Show him?</h1>
+            <div class="d-flex wheel-texts">
+                <h1 class="wheel-no">No</h1>
+                <div class="wheel-line"></div>
+                <h1 class="wheel-yes">Yes</h1>
+            </div>
+            <img src="../assets/arrow.png" class="wheel-arrow">
+
+        </div>
+        <button class="next-question">Next</button>
+    </div>
+
+
+    <script
+    src="https://code.jquery.com/jquery-3.7.1.min.js"
+    integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+    crossorigin="anonymous"></script>
+
+    <script src="../widgets/menu/script.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
