@@ -57,6 +57,7 @@ $(document).ready(() => {
 
     const rulesScreen = $("#rules-screen");
     const startupScreen = $("#startup-screen");
+    const optionsScreen = $("#options-screen");
     const playScreen = $("#play-screen");
     const questionBox = $(".question-box");
     const questionBoxCover = $(".question-box-cover");
@@ -86,9 +87,15 @@ $(document).ready(() => {
         screenSwitch(startupScreen, rulesScreen);
     })
 
+    startupScreen.find(".options-btn").click(() => {
+        screenSwitch(startupScreen, optionsScreen)
+    })
+
     rulesScreen.find(".back-btn").click(() => {
         screenSwitch(rulesScreen, startupScreen);
     })
+
+    
 
     questionBoxCover.click(() => {
         if (coverReady) {
