@@ -18,12 +18,23 @@ $(document).ready(() => {
     }
 
     function generateNextQuestion () {
+        questionNumCounter++;
+        if (questionNumCounter > numOfQuestions) {
+            questionNumCounter = 1;
+            $.getJSON("questions.json", (data) => {
+                questions = data;
+                numOfQuestions = questions.length 
+            })
+        }
+        questionNumberElem.text(`${questionNumCounter}/${numOfQuestions}`)
         questionBox.css("transition", "margin-left 0.5s");
         questionBoxCover.css("transition", "top 0.9s cubic-bezier(.66,-0.5,1,1), transform 0.9s ease-out, margin-right 0.5s")
+        playScreenExitBtn.css("display", "block")
         setTimeout(() => {
             questionBox.css("margin-left", "200%")
             questionDiscard.css("opacity", "0")
             questionBoxCover.css("margin-right", "5px")
+            playScreenExitBtn.css("opacity", "1")
             setTimeout(() => {
     
                 questionDiscard.css({
@@ -34,12 +45,14 @@ $(document).ready(() => {
                     "opacity": "1",
                     "background-color": "transparent"
                 });
-    
+
+                playScreenExitBtn.css("transition", "margin 0.5s")
                 questionActions.css("display", "none");
                 questionAnswer.css("opacity", "1");
                 questionDiscard.css("opacity", "1");
                 questionAnswer.prop("disabled", false);
                 questionDiscard.prop("disabled", false);
+                playScreenExitBtn.prop("disabled", false);
                 questionBox.css("transition", "unset");
                 setTimeout(() => {
                     questionBox.css("margin-left", "5px");
@@ -72,14 +85,19 @@ $(document).ready(() => {
     const wheelNo = $(".wheel-no");
     const wheelShowHim = $(".wheel-show-him");
     const nextQuestionBtn = $(".next-question");
+    const questionNumberElem = $(".question-number");
+    const playScreenExitBtn = $("#play-screen .exit-btn");
 
-    let questions;
+    let questions, numOfQuestions, questionNumCounter;
     let arrowReady = true, coverReady = true;
 
     startupScreen.find(".play-btn").click(() => {
         screenSwitch(startupScreen, playScreen);
         $.getJSON("questions.json", (data) => {
             questions = data;
+            numOfQuestions = questions.length
+            questionNumCounter = 1;
+            questionNumberElem.text(`${questionNumCounter}/${numOfQuestions}`)
         })
     })
 
@@ -95,20 +113,31 @@ $(document).ready(() => {
         screenSwitch(rulesScreen, startupScreen);
     })
 
+    playScreenExitBtn.click(() => {
+        screenSwitch(playScreen, startupScreen);
+    })
+
     
 
     questionBoxCover.click(() => {
         if (coverReady) {
             coverReady = false;
+            playScreenExitBtn.prop("disabled", true);
             let questionNumber = getRandomInt(0, questions.length-1)
             questionTextEN.text(questions[questionNumber][0])
             questionTextSK.text(questions[questionNumber][1])
+            questions.splice(questionNumber, 1)
             questionBoxCover.css({
                 "top": "110%",
                 "transform": "rotate(5deg)"
             })
             setTimeout(() => {
                 questionActions.css("display", "flex");
+                playScreenExitBtn.css({
+                    "display": "none",
+                    "opacity": "0",
+                    "transition": "opacity 0.5s"
+                })
             }, 700);
             setTimeout(() => {
                 questionBoxCover.css({

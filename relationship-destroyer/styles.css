@@ -135,6 +135,16 @@ input:focus {
     color: rgb(255, 130, 130);
 }
 
+.question-number {
+    position: absolute;
+    bottom: 0;
+}
+
+#play-screen .exit-btn {
+    position: absolute;
+    bottom: 100px;
+}
+
 .question-actions {
     position: absolute;
     display: none;
