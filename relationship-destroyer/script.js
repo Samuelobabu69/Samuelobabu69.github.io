@@ -2,13 +2,13 @@ $(document).ready(() => {
 
     function screenSwitch (screenToHide, screenToShow) {
         screenToHide.css("opacity", "0");
-        screenToHide.find("*").css("margin", "25px")
+        screenToHide.find(".transition-effect").css("margin", "25px")
         setTimeout(() => {
             screenToHide.css("display", "none");
             screenToShow.css("display", "flex");
             setTimeout(() => {
                 screenToShow.css("opacity", "1");
-                screenToShow.find("*").css("margin", "5px");
+                screenToShow.find(".transition-effect").css("margin", "5px");
             }, 20);
         }, 500);
     }
@@ -33,7 +33,7 @@ $(document).ready(() => {
         setTimeout(() => {
             questionBox.css("margin-left", "200%")
             questionDiscard.css("opacity", "0")
-            questionBoxCover.css("margin-right", "5px")
+            questionBoxCover.css("margin-right", "0")
             playScreenExitBtn.css("opacity", "1")
             setTimeout(() => {
     
@@ -55,7 +55,7 @@ $(document).ready(() => {
                 playScreenExitBtn.prop("disabled", false);
                 questionBox.css("transition", "unset");
                 setTimeout(() => {
-                    questionBox.css("margin-left", "5px");
+                    questionBox.css("margin-left", "0");
                     questionDiscard.css("transition", "unset");
                     questionAnswer.css("transition", "unset");
                 }, 20);
@@ -87,6 +87,10 @@ $(document).ready(() => {
     const nextQuestionBtn = $(".next-question");
     const questionNumberElem = $(".question-number");
     const playScreenExitBtn = $("#play-screen .exit-btn");
+    const addQuestionsScreen = $("#add-questions-screen");
+    const aqRows = $(".aq-row");
+    const historyAnswers = $(".history-answers");
+
 
     let questions, numOfQuestions, questionNumCounter;
     let arrowReady = true, coverReady = true;
@@ -99,6 +103,8 @@ $(document).ready(() => {
             questionNumCounter = 1;
             questionNumberElem.text(`${questionNumCounter}/${numOfQuestions}`)
         })
+        historyAnswers.empty();
+
     })
 
     startupScreen.find(".rules-btn").click(() => {
@@ -111,6 +117,21 @@ $(document).ready(() => {
 
     rulesScreen.find(".back-btn").click(() => {
         screenSwitch(rulesScreen, startupScreen);
+    })
+
+    optionsScreen.find(".back-btn").click(() => {
+        screenSwitch(optionsScreen, startupScreen);
+    })
+
+    optionsScreen.find(".add-questions-btn").click(() => {
+        screenSwitch(optionsScreen, addQuestionsScreen);
+        setTimeout(() => {
+            aqRows.css("margin", "0");
+        }, 510);
+    })
+
+    addQuestionsScreen.find(".back-btn").click(() => {
+        screenSwitch(addQuestionsScreen, optionsScreen);
     })
 
     playScreenExitBtn.click(() => {
@@ -210,6 +231,7 @@ $(document).ready(() => {
             wheelArrow.css("transform", `rotate(${rotateDegrees}deg)`);
             wheelShowHim.css("opacity", "0")
             setTimeout(() => {
+                let historyElem = $('<div class="history-elem"></div>');
                 if (finalDegrees < 180) {
                     wheelYes.css("color", "limegreen")
                     wheelNo.css("opacity", "0.2")
@@ -226,6 +248,10 @@ $(document).ready(() => {
             
                     }, 500);
 
+                    historyElem.css("background-color", "limegreen")
+                    
+
+
                 } else {
                     wheelNo.css("color", "red")
                     wheelYes.css("opacity", "0.2")
@@ -239,8 +265,15 @@ $(document).ready(() => {
                         }, 500);
             
                     }, 500);
+
+                    historyElem.css("background-color", "red");
                 }
 
+                historyAnswers.append(historyElem);
+                setTimeout(() => {
+                    historyElem.css("width", "20px")
+                }, 10);
+                
                 setTimeout(() => {
                     wheelShowHim.css("opacity", "1")
                     wheelYes.css({
