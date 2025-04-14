@@ -25,6 +25,7 @@ h1, p {
 
 .s {
     height: 100vh;
+    overflow: hidden;
 }
 
 .s img {
