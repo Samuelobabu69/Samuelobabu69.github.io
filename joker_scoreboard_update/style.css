@@ -1,0 +1,71 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+* {
+    font-family: "Libertinus Sans", sans-serif;
+    color: rgb(206, 206, 206);
+    font-size: 1em;
+    text-align: center;
+}
+
+*:focus {
+    outline: none;
+}
+
+p {
+    padding: 0 15px;
+}
+
+li {
+    text-align: left;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-none {
+    display: none;
+}
+
+.fd-column {
+    flex-direction: column;
+}
+
+.no-select {
+    user-select: none;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s;
+}
+
+.page-hidden {
+    opacity: 0;
+}
+
+#noPressPage {
+    z-index: 1000;
+}
+
+#container {
+    width: 100%;
+    height: 100vh;
+}
+
+button {
+    height: 50px;
+    padding: 0px 15px;
+    background-color: rgb(41, 41, 41);
+    border: 2px solid rgb(65, 65, 65);
+}
+

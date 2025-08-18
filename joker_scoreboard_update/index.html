@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Joker Scoreboard - Update</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container" class="d-flex">
+        <div id="downloadPage" class="page d-flex fd-column">
+            <a href="https://github.com/Samuelobabu69/joker-scoreboard/raw/refs/heads/main/app.apk"><button id="updateBtn">Stiahnuť najnovšiu aktualizáciu</button></a>
+
+            <p>Najnovšia verzia: <span id="newestVersion"></span></p>
+            <p><b>Nesťahujte aktualizáciu pre aplikáciu Žolíkový zápisník z iného zdroja. Pokiaľ ste klikli na Nastavenia > Skontrolovať aktualizácie > Aktualizovať, ste na správnom mieste.</b></p>
+
+        </div>
+
+        <div id="howToUpdatePage" class="page page-hidden d-flex fd-column d-none">
+            <p>Aktualizácia sa sťahuje. Postupujte podľa návodu:</p>
+            <ol>
+                <li>Počkajte, kým sa súbor APK stiahne.</li>
+                <li>Otvorte správcu súborov (Súbory, Moje súbory, a pod.)</li>
+                <li>Otvorte "nedávno stiahnuté".</li>
+                <li>Kliknite na súbor APK a počkajte kým sa aktualizácia nainštaluje.</li>
+            </ol>
+            <a href="https://github.com/Samuelobabu69/joker-scoreboard"><button>Všetky zmeny v aktualizácii nájdete tu</button></a>
+        </div>
+    </div>
+
+    <div id="noPressPage" class="page page-hidden d-none"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
