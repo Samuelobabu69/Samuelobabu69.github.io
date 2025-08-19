@@ -1,0 +1,107 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: black;
+}
+
+* {
+    font-family: "Libertinus Sans", sans-serif;
+    color: rgb(206, 206, 206);
+    text-align: center;
+}
+
+*:focus {
+    outline: none;
+}
+
+p, button { 
+    font-size: 1em;
+    max-width: 90%;
+    padding: 0 15px;
+}
+
+h2 {
+    max-width: 90%;
+}
+
+li {
+    text-align: left;
+}
+
+select {
+    background-color: rgb(41, 41, 41);
+    border: 2px solid rgb(65, 65, 65);
+    width: 25%;
+    height: 30px;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.d-none {
+    display: none;
+}
+
+.fd-column {
+    flex-direction: column;
+}
+
+.no-select {
+    user-select: none;
+}
+
+.page {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.3s;
+}
+
+.page-hidden {
+    opacity: 0;
+}
+
+.language-wrapper {
+    justify-content: right;
+    width: 90%;
+}
+
+#noPressPage {
+    z-index: 1000;
+}
+
+#container {
+    width: 100%;
+    height: 100vh;
+}
+
+button {
+    height: 50px;
+    padding: 0px 15px;
+    background-color: rgb(41, 41, 41);
+    border: 2px solid rgb(65, 65, 65);
+    transition: opacity 0.3s;
+}
+
+button:disabled {
+    opacity: 0.6;
+}
+
+ol {
+    margin-top: 0;
+}
+
+hr {
+    border: 1px solid rgb(65, 65, 65);
+    width: 90%;
+    margin: 0;
+}
+
+.link-btn {
+    margin-top: 16px;
+}
+
