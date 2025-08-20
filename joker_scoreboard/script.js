@@ -1,7 +1,7 @@
 $(document).ready(() => {
 
     async function init() {
-        sessionStorage.removeItem("translations-update-website")
+        //sessionStorage.removeItem("translations-update-website")
 
         if (!localStorage.getItem("language")) {
             localStorage.setItem("language", "slovak");
@@ -61,5 +61,6 @@ $(document).ready(() => {
     }
 
     init();
+
 
 });
