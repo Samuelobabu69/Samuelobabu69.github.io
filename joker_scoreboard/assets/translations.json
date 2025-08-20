@@ -12,7 +12,8 @@
         "after-downloading-step1": "Open your device's file manager. (Files, My files, etc.)",
         "after-downloading-step2": "Open \"recently downloaded\".",
         "after-downloading-step3": "Run the APK file and wait for it to install.",
-        "github": "All changes can be found on this GitHub page."
+        "github": "All changes can be found on this GitHub page.",
+        "beta": "Download beta version here."
     },
 
     "slovak": {
@@ -28,7 +29,8 @@
         "after-downloading-step1": "Otvorte správcu súborov vo vašom zariadení. (Súbory, Moje súbory, a pod.)",
         "after-downloading-step2": "Otvorte \"nedávno stiahnuté\".",
         "after-downloading-step3": "Spustite súbor APK a počkajte na dokončenie inštalácie.",
-        "github": "Všetky zmeny môžete nájsť na tejto GitHub stránke."
+        "github": "Všetky zmeny môžete nájsť na tejto GitHub stránke.",
+        "beta": "Stiahnite si beta verziu tu."
     },
 
     "czech": {
@@ -44,6 +46,7 @@
         "after-downloading-step1": "Otevřete správce souborů ve vašem zařízení. (Soubory, Moje soubory, a pod.)",
         "after-downloading-step2": "Otevřete \"nedávno stažené\".",
         "after-downloading-step3": "Spusťte soubor APK a počkejte na dokončení instalace.",
-        "github": "Všechny změny můžete najít na této GitHub stránce."
+        "github": "Všechny změny můžete najít na této GitHub stránce.",
+        "beta": "Stáhněte si beta verzi tady."
     }
 }
