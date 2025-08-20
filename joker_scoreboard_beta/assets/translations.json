@@ -1,0 +1,52 @@
+{
+    "english": {
+        "website-title": "Joker Scoreboard - BETA",
+        "language": "Language",
+        "language-english": "English",
+        "language-slovak": "Slovak",
+        "language-czech": "Czech",
+        "title": "Download/Update Joker Scoreboard BETA",
+        "downloading": "File is downloading",
+        "download-btn": "Download newest BETA version",
+        "warning": "Warning: Beta version is used by the developer to test upcoming features. This can cause bugs or even corrupt your saved sessions. The developer is not responsible for any damage caused. Update at your own risk.",
+        "after-downloading": "After the file downloads, click on \"Open\" in the popup, or:",
+        "after-downloading-step1": "Open your device's file manager. (Files, My files, etc.)",
+        "after-downloading-step2": "Open \"recently downloaded\".",
+        "after-downloading-step3": "Run the APK file and wait for it to install.",
+        "github": "All changes can be found on this GitHub page."
+    },
+
+    "slovak": {
+        "website-title": "Žolíkový Zápisník - BETA",
+        "language": "Jazyk",
+        "language-english": "Angličtina",
+        "language-slovak": "Slovenčina",
+        "language-czech": "Čeština",
+        "title": "Stiahnuť/Aktualizovať Žolíkový Zápisník BETA",
+        "downloading": "Súbor sa sťahuje",
+        "download-btn": "Stiahnuť najnovšiu BETA verziu",
+        "warning": "Varovanie: Beta verziu používa vývojár na testovanie nadchádzajúcich funkcií. Môžu sa objaviť chyby alebo aj poškodiť dáta uložených hier. Vývojár nie je zodpovedný za žiadnu škodu. Aktualizujte na vlastné riziko.",
+        "after-downloading": "Po stiahnutí súboru, kliknite na \"Otvoriť\" vo vyskakovacom okne, alebo:",
+        "after-downloading-step1": "Otvorte správcu súborov vo vašom zariadení. (Súbory, Moje súbory, a pod.)",
+        "after-downloading-step2": "Otvorte \"nedávno stiahnuté\".",
+        "after-downloading-step3": "Spustite súbor APK a počkajte na dokončenie inštalácie.",
+        "github": "Všetky zmeny môžete nájsť na tejto GitHub stránke."
+    },
+
+    "czech": {
+       "website-title": "Žolíkový Zápisník - BETA",
+        "language": "Jazyk",
+        "language-english": "Angličtina",
+        "language-slovak": "Slovenština",
+        "language-czech": "Čeština",
+        "title": "Stáhnout/Aktualizovat Žolíkový Zápisník BETA",
+        "downloading": "Soubor se stahuje",
+        "download-btn": "Stáhnout nejnovější BETA verzi",
+        "warning": "Varování: Beta verzi používá vývojář na testování nadcházejících funkcí. Můžou se objevit chyby nebo i poškodit data uložených her. Vývojář není zodpovědný za žádné škody. Aktualizujte na vlastní riziko.",
+        "after-downloading": "Po stáhnutí, klikněte na \"Otevřít\" ve vyskakovacím okně, nebo:",
+        "after-downloading-step1": "Otevřete správce souborů ve vašem zařízení. (Soubory, Moje soubory, a pod.)",
+        "after-downloading-step2": "Otevřete \"nedávno stažené\".",
+        "after-downloading-step3": "Spusťte soubor APK a počkejte na dokončení instalace.",
+        "github": "Všechny změny můžete najít na této GitHub stránce."
+    }
+}

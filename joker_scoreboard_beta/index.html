@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-translate-id="website-title">Joker Scoreboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libertinus+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="container" class="d-flex">
+        <div id="downloadPage" class="page d-flex fd-column">
+            <div class="d-flex language-wrapper">
+                <p data-translate-id="language">Language</p>
+                <select id="languageInput">
+                    <option data-translate-id="language-english" value="english">English</option>
+                    <option data-translate-id="language-slovak" value="slovak">Slovak</option>
+                    <option data-translate-id="language-czech" value="czech">Czech</option>
+                </select>
+            </div>
+
+            <hr>
+
+            <h2 data-translate-id="title">Download/Update Joker Scoreboard</h2>
+            <a href="https://github.com/Samuelobabu69/joker-scoreboard/raw/refs/heads/main/app.apk"><button data-translate-id="download-btn" id="updateBtn">Download newest version</button></a>
+            <p>v<span id="newestVersion"></span></p>
+            <p class="warning"><b data-translate-id="warning">Warning: Beta version is used by the developer to test upcoming features. This can cause bugs or even corrupt your saved sessions. The developer is not responsible for any damage caused. Update at your own risk.</b></p>
+
+            <hr>
+
+            <p data-translate-id="after-downloading">After the file downloads, click on "Open" in the popup, or:</p>
+            <ol>
+                <li data-translate-id="after-downloading-step1">Open your device's file manager. (Files, My files, etc.)</li>
+                <li data-translate-id="after-downloading-step2">Open "recently downloaded".</li>
+                <li data-translate-id="after-downloading-step3">Run the APK file and wait for it to install.</li>
+            </ol>
+
+            <hr>
+
+            <a href="https://github.com/Samuelobabu69/joker-scoreboard"><button class="link-btn" data-translate-id="github">All changes can be found on this GitHub page.</button></a>
+
+        </div>
+    </div>
+
+    <div id="noPressPage" class="page page-hidden d-none"></div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
